@@ -18,7 +18,15 @@ The mimic_docker_postgres_extract.sh script downloads data from the MIMIC websit
 
 ## Predicting mortality with xgboost
 
-Death in the hospital was predicted using basic information available at the time of admission and diagnoses that were made throughout the course of the admission.  The base rate of the death was 11 percent.  The script xgb_predict.r processes the data by joining the diagnosis-level file with the admissions file based on patient and stay identifiers.  The top 5 diagnoses were retained per admission and binary flags were created for diagnoses orrucring at least 25 time int he data.
+Death in the hospital was predicted using basic information available at the time of admission and diagnoses that were made throughout the course of the admission.  The base rate of the death was 11 percent.  The script xgb_predict.r processes the data by joining the diagnosis-level file with the admissions file based on patient and stay identifiers.  The top 5 diagnoses were retained per admission and binary flags were created for diagnoses orrucring at least 25 time int he data. Combined with basic patient level data the model included 1,232 predictors.
+
+The 58,976 events were split 90/10 into training and test sets.  A 5-fold cross validation was used with the training data to select an appropriate number of trees without overfitting. While the training rate (red) declines throughout, the test rate (blue) had a minimum at iteration 102.
+
+![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/xgb.cv.June1.png)
+
+
+
+
 
 
 
