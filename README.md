@@ -24,12 +24,10 @@ The 58,976 events were split 90/10 into training and test sets.  A 5-fold cross 
 
 ![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/xgb.cv.June1.png)
 
-The base rate of death was 11 percent. The final model had a crossvalidation test accuracy of 9.0 percent with a slightly better accuracy of 8.55 percent on the 10 percent test sample that was held out of the model entirely with the following confusion matrix  
+The base rate of death was 11 percent and the accuracy of the final model was 91.0 percent. The final model had a crossvalidation test error of 9.0 percent with a slightly better 8.55 percent error on the 10 percent test sample that was held out entirely.  No grid search for parameter tuning was inplemented as more of the available information should be added first to increase performance.
 
-          Reference
-Prediction    0    1
-         0 5271  445
-         1   59  118
+A variable importance plot highlights mostly intuitive predictors.  The top spot was the diagnosis code for Acute respiratry failure, followed by an indicator for emergency admissions.  The next two correspond to Unspecified Septicemia and Coronary Atherosclerosis of the Native Coronary Artery.  An indicator for missing language presumably flags unresponsive patients and Medicare insurance functions as a stand-in for age, which was not included.
+
 
 
 
