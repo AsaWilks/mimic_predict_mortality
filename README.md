@@ -24,6 +24,18 @@ The 58,976 events were split 90/10 into training and test sets.  A 5-fold cross 
 
 ![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/xgb.cv.June1.png)
 
+The base rate of death was 11 percent. The final model had a crossvalidation test accuracy of 9.0 percent with a slightly better accuracy of 8.55 percent on the 10 percent test sample that was held out of the model entirely with the following confusion matrix  
+
+          Reference
+Prediction    0    1
+         0 5271  445
+         1   59  118
+
+
+
+
+
+
 
 
 
