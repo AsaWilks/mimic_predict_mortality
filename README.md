@@ -24,9 +24,58 @@ The 58,976 events were split 90/10 into training and test sets.  A 5-fold cross 
 
 ![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/xgb.cv.June1.png)
 
-The base rate of death was 11 percent and the accuracy of the final model was 91.0 percent. The final model had a crossvalidation test error of 9.0 percent with a slightly better 8.55 percent error on the 10 percent test sample that was held out entirely.  No grid search for parameter tuning was inplemented as more of the available information should be added first to increase performance.
+The base rate of death was 11 percent and the accuracy of the final model was 91.0 percent. The final model had a crossvalidation test error of 9.0 percent with a slightly better 8.55 percent error on the 10 percent test sample that was held out entirely.  No grid search for parameter tuning was implemented because a more fruitful next step would be to add additional information to increase performance.
 
 A variable importance plot highlights mostly intuitive predictors.  The top spot was the diagnosis code for Acute respiratry failure, followed by an indicator for emergency admissions.  The next two correspond to Unspecified Septicemia and Coronary Atherosclerosis of the Native Coronary Artery.  An indicator for missing language presumably flags unresponsive patients and Medicare insurance functions as a stand-in for age, which was not included.
+
+![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/importance.xgb.June1.png)
+
+The final model object is included in this repo as xgboost.model.1JUN2019.
+
+## Function for returning prediction based on user inputs
+
+To allow predictions from the model to be shared, a the return_pred_api.r defines a function which allows relaitvely few user inputs to be translated into a prediction.  The following parameters can be specified by the user
+
+```r
+predict.death.rate <- function(
+  HAS_CHARTEVENTS_DATA=NA, #1/0
+  ADMISSION_TYPE=NA,       #ELECTIVE / EMERGENCY / NEWBORN / URGENT
+  MARITAL_STATUS=NA,       #UNK / DIVORCED / LIFE.PARTNER / MARRIED / SEPARATED / SINGLE / WIDOWED
+  ADMISSION_LOCATION=NA,   #UNK / EMERGENCY_ROOM /TRANSFER_WITHIN
+  INSURANCE=NA,            #GOVERNMENT / MEDICAID / MEDICARE / PRIVATE / SELFPAY
+  ETHNICITY=NA,            #WHITE / BLACK / ASIAN / LATINO
+  LANGUAGE=NA,             #UNK / ENGLISH / SPANISH / KOREAN
+  RELIGION=NA,             #UNK / CATHOLIC / JEWISH / MUSLIM
+  DX1=NA,                  #"DX___"
+  DX2=NA,                  #"DX___"
+  DX3=NA,                  #"DX___"
+  DX4=NA,                  #"DX___"
+  DX5=NA                   #"DX___"
+)
+```
+
+The plummer.r script packages the above R function such that it can be run as an API and deploydeathscript.r script deploys the API to shinyapps.io, where it accepts predictor parameters as JSON and returns a prediction value.
+
+```r
+> rsconnect::deployApp(appDir = "./predict_death_api")
+Preparing to deploy application...
+Uploading bundle for application: 961826...DONE
+Deploying bundle: 2128346 for application: 961826 ...
+Waiting for task: 619417585
+  building: Building image: 2244214
+  building: Installing packages
+  building: Installing files
+  building: Pushing image: 2244214
+  deploying: Starting instances
+  rollforward: Activating new instances
+  terminating: Stopping old instances
+Application successfully deployed to https://asawilks.shinyapps.io/predict_death_api/
+```
+
+
+
+
+
 
 
 
