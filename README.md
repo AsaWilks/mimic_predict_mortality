@@ -71,7 +71,7 @@ Waiting for task: 619417585
   terminating: Stopping old instances
 Application successfully deployed to https://asawilks.shinyapps.io/predict_death_api/
 ```
-
+![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/importance.xgb.June1.png)
 
 
 
