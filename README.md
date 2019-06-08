@@ -34,7 +34,7 @@ The final model object is included in this repo as xgboost.model.1JUN2019.
 
 ## Function for returning prediction based on user inputs
 
-To allow predictions from the model to be shared, a the return_pred_api.r defines a function which allows relaitvely few user inputs to be translated into a prediction.  The following parameters can be specified by the user
+To allow predictions from the model to be shared, a the return_pred_api.r defines a function which allows relatively few user inputs to be translated into a prediction.  The following parameters can be specified by the user
 
 ```r
 predict.death.rate <- function(
@@ -54,29 +54,13 @@ predict.death.rate <- function(
 )
 ```
 
+The model was deployed as both a Shiny App and API.  The app is the easiest way to test predictions, allowing for user inputs in a browser.  It is located at https://asawilks.shinyapps.io/mortality_predict_app/.
+
+
+![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/app_inputs.png)
+
+
 The plummer.r script packages the above R function such that it can be run as an API and deploydeathscript.r script deploys the API to shinyapps.io, where it accepts predictor parameters as JSON and returns a prediction value.
-
-```r
-> rsconnect::deployApp(appDir = "./predict_death_api")
-Preparing to deploy application...
-Uploading bundle for application: 961826...DONE
-Deploying bundle: 2128346 for application: 961826 ...
-Waiting for task: 619417585
-  building: Building image: 2244214
-  building: Installing packages
-  building: Installing files
-  building: Pushing image: 2244214
-  deploying: Starting instances
-  rollforward: Activating new instances
-  terminating: Stopping old instances
-Application successfully deployed to https://asawilks.shinyapps.io/predict_death_api/
-```
-![alt text](https://github.com/AsaWilks/mimic_predict_mortality/blob/master/predictdeath_api_details.png)
-
-
-
-
-
 
 
 
