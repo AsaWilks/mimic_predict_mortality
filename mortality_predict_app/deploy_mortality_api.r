@@ -1,8 +1,8 @@
 ## deploy_mortality_api.r
 
 rsconnect::setAccountInfo(name='asawilks',
-                          token='C379DE2157F66143EFAF9BDD2B024DC0',
-                          secret='m40sXO+Z3Ocz0HWnnAwLRI8XgtqkAhf/O0DEbVhF')
+                          token='XXXX',
+                          secret='XXXX')
 
 install.packages("xgboost")
 library(xgboost)
