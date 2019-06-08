@@ -1,0 +1,10 @@
+name: mortality_predict_app
+title:
+username:
+account: asawilks
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 972069
+bundleId: 2139850
+url: https://asawilks.shinyapps.io/mortality_predict_app/
+when: 1560018697.26394
